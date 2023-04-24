@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes")
 
-const currentTime = (req, res) => {
+/* const currentTime = (req, res) => {
     const dateObject = new Date()
     if (dateObject == "Invalid Date") {
         return res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid Date" })
@@ -23,6 +23,18 @@ const currentTime = (req, res) => {
     res.status(StatusCodes.OK).json({ 
         unix: unix,
         utc: `${day}, ${date} ${month} ${year} 00:00:00 GMT`
+    })
+}
+ */
+
+const currentTime = (req, res) => {
+    const currentTime = new Date()
+    const currentTimeInUTC = currentTime.toUTCString()
+    const currentUnix = Date.parse(currentTime)
+
+    res.StatusCodes(StatusCodes.OK).json({
+        unix: currentUnix, 
+        utc: currentTimeInUTC
     })
 }
 

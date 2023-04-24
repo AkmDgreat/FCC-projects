@@ -8,17 +8,19 @@ const router = require("./Router/route")
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
-var cors = require('cors');
-app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
+//var cors = require('cors');
+//app.use(cors({optionsSuccessStatus: 200}));  // some legacy browsers choke on 204
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+//app.use(express.static('public'));
+
+app.use(express.json())
 app.use(router)
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+/* app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
-});
+}); */
 
 
 // your first API endpoint... 

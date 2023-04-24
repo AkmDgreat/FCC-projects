@@ -15,16 +15,21 @@ const UtcAndUnix = (req, res) => {
         })
     }
 
-    const dateObject = new Date(req.params.date)
+    const time = new Date(req.params.date)
+    const timeInUTC = currentTime.toUTCString(time)
+    const unix = Date.parse(currentTime)    
     console.log(dateObject) // logs "Invalid Date" if you pass, for example, a letter in the date
-
-    
 
     if (dateObject == "Invalid Date") {
         return res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid Date" })
     }
 
-    const unix = dateObject.getTime() / 1000
+    res.StatusCodes(StatusCodes.OK).json({
+        unix: unix, 
+        utc: timeInUTC
+    })
+
+    /* const unix = dateObject.getTime() / 1000
 
     let day = dateObject.getDay()
     const daysArray = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"]
@@ -38,13 +43,10 @@ const UtcAndUnix = (req, res) => {
 
     const date = dateObject.getDate()
 
-
-
-
     res.status(StatusCodes.OK).json({ 
         unix: unix,
         utc: `${day}, ${date} ${month} ${year} 00:00:00 GMT`
-    })
+    }) */
 }
 
 module.exports = UtcAndUnix
