@@ -15,16 +15,16 @@ const UtcAndUnix = (req, res) => {
         })
     }
 
-    const time = new Date(req.params.date)
-    const timeInUTC = currentTime.toUTCString(time)
-    const unix = Date.parse(currentTime)    
-    console.log(dateObject) // logs "Invalid Date" if you pass, for example, a letter in the date
+    const timeStamp = new Date(req.params.date)
+    const timeInUTC = timeStamp.toUTCString()
+    const unix = Date.parse(timeInUTC)    
+    console.log(timeStamp) // logs "Invalid Date" if you pass, for example, a letter in the date
 
-    if (dateObject == "Invalid Date") {
+    if (timeStamp == "Invalid Date") {
         return res.status(StatusCodes.BAD_REQUEST).json({ error: "Invalid Date" })
     }
 
-    res.StatusCodes(StatusCodes.OK).json({
+    res.status(StatusCodes.OK).json({
         unix: unix, 
         utc: timeInUTC
     })

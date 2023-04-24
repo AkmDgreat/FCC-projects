@@ -32,7 +32,7 @@ const currentTime = (req, res) => {
     const currentTimeInUTC = currentTime.toUTCString()
     const currentUnix = Date.parse(currentTime)
 
-    res.StatusCodes(StatusCodes.OK).json({
+    res.status(StatusCodes.OK).json({
         unix: currentUnix, 
         utc: currentTimeInUTC
     })
