@@ -2,8 +2,8 @@ const { StatusCodes } = require("http-status-codes")
 const ip = require("ip")
 
 const systemInfo = (req, res) => {
-    const ipAddress = req.socket.remoteAddress // ::1
-    //const ipAddress = req.ip // ::1
+    //const ipAddress = req.socket.remoteAddress // ::1
+    const ipAddress = req.ip // ::1
     //const ipAddress = ip.address()
 
     const language = req.headers["accept-language"]
