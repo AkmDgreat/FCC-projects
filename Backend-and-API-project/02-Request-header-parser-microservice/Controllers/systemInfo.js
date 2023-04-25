@@ -13,7 +13,7 @@ const systemInfo = (req, res) => {
     const software = req.headers["user-agent"]
 
     res.status(StatusCodes.OK).json({
-        ipAddress: ipAddress,
+        ipaddress: ipAddress,
         language: language,
         software: software
     })
