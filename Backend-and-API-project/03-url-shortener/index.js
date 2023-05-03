@@ -24,9 +24,9 @@ app.get("/api/hello", function (req, res) {
 })
 
 
-const startServer = async (url) => {
+const startServer = async () => {
   try {
-    await mongoose.connect(url)
+    await mongoose.connect(MONGO_URI)
     app.listen(port, console.log(`Listening on port ${port}...`))
   } 
   catch (error) {
@@ -34,4 +34,4 @@ const startServer = async (url) => {
   }
 }
 
-startServer(MONGO_URI)
+startServer()
