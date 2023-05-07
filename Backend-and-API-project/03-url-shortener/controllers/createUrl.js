@@ -1,16 +1,14 @@
 const { StatusCodes } = require("http-status-codes")
-//const dns = require("dns")
 const validUrl = require("valid-url")
-const urlModel = require("../models/urlModel")
+//const urlModel = require("../models/urlModel")
+const urlRegex = require("../urlRegex")
 
 const createUrl = async (req, res) => {
+    
     try {
-        /* dns.lookup(req.body.original_url, () => {
-            return res.status(StatusCodes.BAD_GATEWAY).json({ error: 'invalid url' })
-        }) */
-
-        if (!validUrl.isUri(req.body.original_url)) {
-            return res.status(StatusCodes.BAD_REQUEST).json({ error: 'invalid url' })
+        //console.log(validUrl.isUri(req.body.original_url))
+        if (!urlRegex(req.body.original_url)) {
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: 'invalid url' })
         }
     
         const num = Math.floor(Math.random() * 10000)
